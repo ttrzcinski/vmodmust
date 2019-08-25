@@ -3,6 +3,7 @@ package org.ttrzcinski;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.ttrzcinski.utils.ClassParser;
 import org.ttrzcinski.utils.ConsoleMenu;
 import org.ttrzcinski.utils.EnvArgument;
 import org.ttrzcinski.utils.MultiOut;
@@ -22,6 +23,9 @@ public final class Main {
    * @param args given params
    */
   public static void main(final String[] args) {
+
+    ClassParser classParser = new ClassParser();
+    classParser.listMethods("org.ttrzcinski.utils.StringFix");
 
     // Set multi output
     final MultiOut multiOut = MultiOut.getInstance();
