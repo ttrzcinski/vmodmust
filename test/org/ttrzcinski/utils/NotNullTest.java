@@ -81,4 +81,5 @@ class NotNullTest {
     // Assert
     Assert.assertNotNull(result);
   }
+
 }

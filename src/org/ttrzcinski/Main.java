@@ -15,6 +15,9 @@ import org.ttrzcinski.utils.ParamCheck;
  */
 public final class Main {
 
+  /**
+   * Hidden constructor - there is no point of initialization.
+   */
   private Main() { }
 
   /**

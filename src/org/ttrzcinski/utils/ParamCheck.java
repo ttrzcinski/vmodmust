@@ -1,6 +1,7 @@
 package org.ttrzcinski.utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,10 +11,13 @@ import java.util.regex.Pattern;
  */
 public final class ParamCheck {
 
+  /**
+   * Hidden constructor - there is no point of initialization.
+   */
   private ParamCheck() { }
 
   /**
-   *
+   * Pattern for file paths.
    */
   private static Pattern filePathPattern;
 
@@ -28,18 +32,10 @@ public final class ParamCheck {
     if (params == null || params.length == 0) {
       return false;
     }
-    // If params is strings array
-    if (params instanceof String[]) {
-      return isSet((String[]) params);
-    }
-    // If there is inside at least one empty item
-    for (Object param : params) {
-      if (!isSet(param)) {
-        return false;
-      }
-    }
-    // else it's ok
-    return true;
+    // If there is inside at least one empty item, else it's ok
+    return (!(params instanceof String[])) ?
+          Arrays.stream(params).allMatch(param -> isSet(param)) :
+          isSet((String[]) params);
   }
 
   /**
@@ -49,18 +45,10 @@ public final class ParamCheck {
    * @return true means is is set, false otherwise
    */
   public static boolean isSet(final String[] params) {
-    // If there is nothing outside to check
-    if (params == null || params.length == 0) {
-      return false;
-    }
-    // If there is inside at least one empty item
-    for (String param : params) {
-      if (!isSet(param)) {
-        return false;
-      }
-    }
-    // else it's ok
-    return true;
+    // If there is inside at least one empty item, else it's ok
+    return (params != null && params.length != 0) ?
+      Arrays.stream(params).allMatch(param -> isSet(param)):
+      false;
   }
 
   /**
@@ -70,11 +58,9 @@ public final class ParamCheck {
    * @return true means is is set, false otherwise
    */
   public static boolean isSet(final String param) {
-    if (param == null) {
-      return false;
-    }
-
-    return ((String) param).trim().length() > 0;
+    return (param != null) ?
+        ((String) param).trim().length() > 0 :
+        false;
   }
 
   /**
