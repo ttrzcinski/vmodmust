@@ -1,5 +1,6 @@
 package org.ttrzcinski.utils;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
@@ -18,7 +19,7 @@ public class ClassParser {
    */
   public Object createInstanceOfClass(String classFullName)
       throws ClassNotFoundException, InstantiationException,
-      IllegalAccessException{
+      IllegalAccessException {
     Class classTemp = Class.forName(classFullName);
     Object obj = classTemp.newInstance();
     return obj;
@@ -27,8 +28,7 @@ public class ClassParser {
   /**
    * Lists methods of pointed class.
    *
-   * It looks like:<br/>
-   * public static java.lang.String org.ttrzcinski.utils.StringFix.simple(java.lang.String)
+   * It looks like:<br/> public static java.lang.String org.ttrzcinski.utils.StringFix.simple(java.lang.String)
    *
    * @param classFullName given class name
    */
@@ -42,6 +42,27 @@ public class ClassParser {
       }
     } catch (Throwable e) {
       System.err.println(e);
+    }
+  }
+
+  public void listVariables(String classFullName) {
+    Field[] fields = new Field[1];
+    try {
+      Class classTemp = Class.forName(classFullName);
+      fields = classTemp.getClass().getDeclaredFields();
+    } catch (SecurityException iae) {
+      iae.printStackTrace();
+      System.err.println(iae);
+    } catch (Throwable e) {
+      System.err.println(e);
+    }
+    //
+    if (fields.length > 0) {
+      for (Field field : fields) {
+        System.out.println(field.toString());
+      }
+    } else {
+      System.out.println("No public fields found.");
     }
   }
 }

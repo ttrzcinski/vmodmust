@@ -25,7 +25,7 @@ public final class Main {
   public static void main(final String[] args) {
 
     ClassParser classParser = new ClassParser();
-    classParser.listMethods("org.ttrzcinski.utils.StringFix");
+    classParser.listVariables("java.lang.Integer");
 
     // Set multi output
     final MultiOut multiOut = MultiOut.getInstance();
