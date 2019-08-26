@@ -1,4 +1,4 @@
-package org.ttrzcinski.fileext.utils;
+package org.ttrzcinski.utils;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
