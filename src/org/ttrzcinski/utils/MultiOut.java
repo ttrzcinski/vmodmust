@@ -99,7 +99,7 @@ public final class MultiOut {
       this.lines.add(given);
     }
     // TODO Consider: use thread pool with passing handle to other threads.
-    if (!this.lines.isEmpty()) {
+    if (this.lines.size() > 0) {
       // Standard output
       this.lines.stream()
         .filter(line -> this.outputs.containsKey(Output.STD_OUTPUT))
