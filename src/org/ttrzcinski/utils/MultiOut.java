@@ -98,14 +98,12 @@ public final class MultiOut {
     if (ParamCheck.isSet(given)) {
       this.lines.add(given);
     }
-    // TODO Consider usage of thread pool with passing handle to other home threads.
+    // TODO Consider: use thread pool with passing handle to other threads.
     if (!this.lines.isEmpty()) {
-      for (String line : this.lines) {
-        // Standard output
-        if (this.outputs.containsKey(Output.STD_OUTPUT)) {
-          System.out.println(line);
-        }
-      }
+      // Standard output
+      this.lines.stream()
+        .filter(line -> this.outputs.containsKey(Output.STD_OUTPUT))
+        .forEach(System.out::println);
       // Remove those lines after passing them to outputs
       this.lines.clear();
     }
@@ -127,7 +125,6 @@ public final class MultiOut {
    * @param path marked path for output
    */
   public void put(final Output output, final String path) {
-    // TODO CHECK, IF PATH HAS (AND NEEDS TO HAVE) VALUE
     if (output != null) {
       this.outputs.put(output, path);
     }
