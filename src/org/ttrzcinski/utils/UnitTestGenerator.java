@@ -35,7 +35,7 @@ public class UnitTestGenerator {
    * @param directory given directory
    * @return prepared instance of unit test generator
    */
-  public final UnitTestGenerator withTests(String directory) {
+  public final UnitTestGenerator withSources(String directory) {
     if (ParamCheck.isPath(directory)) {
       this.srcPath = directory;
     }

@@ -2,6 +2,7 @@ package org.ttrzcinski.utils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 /**
  * Parses other classes.
@@ -58,11 +59,10 @@ public class ClassParser {
     }
     //
     if (fields.length > 0) {
-      for (Field field : fields) {
-        System.out.println(field.toString());
-      }
+      System.out.printf("Fields found in %s:%n", classFullName);
+      Arrays.stream(fields).map(Field::toString).forEach(System.out::println);
     } else {
-      System.out.println("No public fields found.");
+      System.out.printf("No fields found in %s:%n", classFullName);
     }
   }
 }
