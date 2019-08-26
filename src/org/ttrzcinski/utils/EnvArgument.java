@@ -77,14 +77,13 @@ public class EnvArgument {
    * @return help's entry
    */
   public final String asHelp() {
-    String legendArguments = new StringBuilder()
-        .append("--").append(this.letter)
-        .append(", -").append(this.letter)
-        .append(", --").append(this.nick)
-        .append(", -").append(this.nick).toString();
-    // TODO IT SHOULD BE CHOPPED IN MULTILINE UP TO HALF OF SCREEN
-    String fixedLegend = String.format(String.format("%%-%ds", HALF_OF_WIDTH), legendArguments);
+    final String legend = String.format(
+        String.format("%%-%ds", HALF_OF_WIDTH),
+        String.format("--%s, -%s, --%s, -%s",
+            this.letter, this.letter, this.nick, this.nick
+        )
+    );
     // Final formatting
-    return new StringBuilder(fixedLegend).append(" : ").append(this.help).toString();
+    return new StringBuilder(legend).append(" : ").append(this.help).toString();
   }
 }
