@@ -1,6 +1,7 @@
 package org.ttrzcinski.utils;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
@@ -22,7 +23,14 @@ public class ClassParser {
       throws ClassNotFoundException, InstantiationException,
       IllegalAccessException {
     Class classTemp = Class.forName(classFullName);
-    Object obj = classTemp.newInstance();
+    Object obj = null;
+    try {
+      obj = classTemp.getDeclaredConstructor().newInstance();
+    } catch (InvocationTargetException ite) {
+      ite.printStackTrace();
+    } catch (NoSuchMethodException nsme) {
+      nsme.printStackTrace();
+    }
     return obj;
   }
 

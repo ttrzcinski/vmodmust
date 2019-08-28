@@ -88,7 +88,7 @@ public class UnitTestGenerator {
    */
   public final boolean validateParameters() {
     // Check, if source directory is set and test directory is set
-    return (this.srcPath != null) && (this.testPath != null);
+    return this.srcPath != null && this.testPath != null;
   }
 
   /**
