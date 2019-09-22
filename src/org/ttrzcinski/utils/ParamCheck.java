@@ -104,12 +104,9 @@ public final class ParamCheck {
       return false;
     }
     String passedValue = given.trim();
-    if (passedValue.startsWith("-")
-        || passedValue.startsWith("--")
-        || !passedValue.startsWith("---")) {
-      return true;
-    }
-    return false;
+    return (passedValue.startsWith("-")
+        || passedValue.startsWith("--"))
+        && !passedValue.startsWith("---");
   }
 
   /**
