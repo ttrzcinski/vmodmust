@@ -1,9 +1,5 @@
 package org.ttrzcinski.utils;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
