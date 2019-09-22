@@ -1,12 +1,8 @@
 package org.ttrzcinski;
 
-import java.util.Arrays;
-import java.util.List;
 import org.ttrzcinski.clui.CLUI;
 import org.ttrzcinski.utils.ClassParser;
 import org.ttrzcinski.utils.ConsoleMenu;
-import org.ttrzcinski.utils.MultiOut;
-import org.ttrzcinski.utils.MultiOut.Output;
 import org.ttrzcinski.utils.ParamCheck;
 
 /**
