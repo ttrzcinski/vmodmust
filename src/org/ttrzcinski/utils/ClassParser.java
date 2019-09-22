@@ -35,8 +35,8 @@ public class ClassParser {
   }
 
   /**
-   * Lists methods of pointed class.
-   *
+   * Lists methods of pointed class.</br>
+   * </br>
    * It looks like:<br/> public static java.lang.String org.ttrzcinski.utils.StringFix.simple(java.lang.String)
    *
    * @param classFullName given class name
@@ -46,14 +46,19 @@ public class ClassParser {
       Class thisClass = Class.forName(classFullName);
       Method[] methods = thisClass.getDeclaredMethods();
 
-      for (Method method : methods) {
-        System.out.println(method.toString());
-      }
+      Arrays.stream(methods)
+          .map(Method::toString)
+          .forEach(System.out::println);
     } catch (Throwable e) {
       System.err.println(e);
     }
   }
 
+  /**
+   * Lists variables of the class.
+   *
+   * @param classFullName class full name
+   */
   public void listVariables(String classFullName) {
     Field[] fields = new Field[1];
     try {
@@ -65,10 +70,12 @@ public class ClassParser {
     } catch (Throwable e) {
       System.err.println(e);
     }
-    //
+    // Only, if there are some fields
     if (fields.length > 0) {
       System.out.printf("Fields found in %s:%n", classFullName);
-      Arrays.stream(fields).map(Field::toString).forEach(System.out::println);
+      Arrays.stream(fields)
+          .map(Field::toString)
+          .forEach(System.out::println);
     } else {
       System.out.printf("No fields found in %s:%n", classFullName);
     }
