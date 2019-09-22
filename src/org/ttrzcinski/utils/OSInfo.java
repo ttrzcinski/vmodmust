@@ -17,19 +17,16 @@ public final class OSInfo {
     private OSInfo() { }
 
     /**
-     * Checks directory by checking current relative path.
-     * "\" - Windows-based
+     * Checks directory by checking current relative path.</br>
+     * "\" - Windows-based</br>
      * "/" - *nux based
      *
      * @return "win', if windows, "nix" otherwise
      */
     public static String checkDirectoryBySystem() {
-        if (Paths.get("").toAbsolutePath().toString()
-                .contains("\\")) {
-            return "win";
-        } else {
-            return "nix";
-        }
+        return Paths.get("")
+            .toAbsolutePath().toString()
+            .contains("\\") ? "win" : "nix";
     }
 
     /**

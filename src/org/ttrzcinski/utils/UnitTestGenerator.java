@@ -104,28 +104,29 @@ public class UnitTestGenerator {
     // Generate unit test classes one by one
     for (String fullFilePath : sourcePaths) {
       // Prepare unit test file path
-      fullFilePath = fullFilePath.replaceFirst("src", "test");
+      fullFilePath = fullFilePath
+          .replaceFirst("src", "test");
       // If unit test file already exists, omit it
       final File tempFile = new File(fullFilePath);
       // Prepare path
       final Path path = Path.of(fullFilePath);
-      try {
-        // Remove file, if overriding
-        if (this.overrideFlag) {
+      if (this.overrideFlag) {
+        try {
+          // Remove file, if overriding
           System.out.printf("Deleting file %s%n", path);
           if (!debug) {
             Files.deleteIfExists(path);
           }
-        }
-        // Create field
-        if (this.overrideFlag || !tempFile.exists()) {
-          System.out.printf("Creating file %s%n", path);
-          if (!debug) {
-            Files.createFile(path);
+          // Create file
+          if (!tempFile.exists()) {
+            System.out.printf("Creating file %s%n", path);
+            if (!debug) {
+              Files.createFile(path);
+            }
           }
+        } catch (IOException e) {
+          e.printStackTrace();
         }
-      } catch (IOException e) {
-        e.printStackTrace();
       }
     }
     System.out.println("..finished making the unit test files.");
