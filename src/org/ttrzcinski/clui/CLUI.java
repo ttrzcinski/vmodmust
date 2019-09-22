@@ -49,7 +49,7 @@ public class CLUI {
   public CLUI(String[] args) {
     this();
     // Use passed arguments
-    if (this.passed == null || this.passed.isEmpty()) {
+    if (this.passed == null || this.passed.size() == 0) {
       this.passed = Arrays.asList(args);
     }
   }
@@ -71,7 +71,7 @@ public class CLUI {
     // Prepare multi output
     if (this.multiOut == null) {
       this.multiOut = MultiOut.getInstance();
-      multiOut.put(Output.STD_OUTPUT);
+      this.multiOut.put(Output.STD_OUTPUT);
     }
   }
 
@@ -91,24 +91,29 @@ public class CLUI {
    * @return true means it contains, false otherwise
    */
   public boolean checkInPassed(String group) {
-    String fixedGroup = group != null ?
+    group = group != null ?
         group.trim().toLowerCase() :
         "";
     boolean result;
-    switch (fixedGroup) {
+    switch (group) {
       case "help":
-        result = passed.contains("-h") && passed.contains("--h")
-            && passed.contains("-help") && passed.contains("--help");
+        result = this.passed.containsAll(Arrays.asList(
+            new String[]{ "-h", "--h", "-help", "--help"}
+            ));
         break;
       case "creators":
-        result = passed.contains("-author") && passed.contains("--author")
-            && passed.contains("-authors") && passed.contains("--authors");
+        result = this.passed.containsAll(Arrays.asList(
+            new String[]{ "-author", "--author", "-authors", "--authors" }
+            ));
         break;
       // Checks, if given arguments is passed
       default:
-        result = passed.contains(String.format("-%s", fixedGroup))
-            && passed.contains(String.format("--%s", fixedGroup));
-        break;
+        result = this.passed.containsAll(Arrays.asList(
+            new String[] {
+                String.format("-%s", group),
+                String.format("--%s", group)
+            }
+            ));
     }
 
     return result;
