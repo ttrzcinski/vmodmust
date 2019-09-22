@@ -521,13 +521,4 @@ class ParamCheckTest {
     // Assert
     Assert.assertTrue(result);
   }
-
-  // TODO UPDATE THOSE TWO METHODS COVERAGE
-  @Test
-  void filterWithPatterns() {
-  }
-
-  @Test
-  void testFilterWithPatterns() {
-  }
 }
