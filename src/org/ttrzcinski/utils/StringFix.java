@@ -21,11 +21,9 @@ public final class StringFix {
      * @return fixed string
      */
     public static String toNotNull(final String given) {
-        if (given == null || given.trim().length() == 0) {
-            return "";
-        } else {
-            return given.trim();
-        }
+        return given != null && given.trim().length() != 0 ?
+            given.trim() :
+            "";
     }
 
     /**
